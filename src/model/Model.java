@@ -5,14 +5,20 @@ import model.student.Group;
 import model.student.PublicWork;
 import model.student.Student;
 
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 public class Model {
     private List<Student> students;
 
     public Model() {
         students = new LinkedList<>();
+    }
+
+    public Model(List<Student> students) {
+        this.students = students;
     }
 
     public void addStudent(FIO fio, Group group) {
@@ -61,6 +67,23 @@ public class Model {
         return toReturn;
     }
 
+    public List<Student> searchStudent(Group group) {
+        List<Student> toReturn = new LinkedList<>();
+        for (Student i : students)
+            if (i.getGroup().equals(group))
+                toReturn.add(i);
+        return toReturn;
+    }
+
+    public List<Student> searchStudent(String surname) {
+        List<Student> toReturn = new LinkedList<>();
+        for (Student i : students)
+            if (i.getFio().getSurname().equals(surname))
+                toReturn.add(i);
+        return toReturn;
+    }
+
+
     public List<Student> searchStudent(Group group, int lowerLimit, int upperLimit) {
         List<Student> toReturn = new LinkedList<>();
         for (Student i : students)
@@ -88,4 +111,14 @@ public class Model {
         return toReturn;
     }
 
+    public void addStudent(Student student) {
+        students.add(student);
+    }
+
+    public List<Integer> getGroupsId() {
+        Set<Integer> set = new LinkedHashSet<>();
+        for (Student i : students)
+            set.add(i.getGroup().getNumber());
+        return new LinkedList<>(set);
+    }
 }

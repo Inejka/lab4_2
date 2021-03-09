@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 public class View extends VBox {
     private MenuBar menuBar = new MenuBar();
     public MenuItem button1;
+    public MenuItem button2;
 
     public View() {
         menuBarInit();
@@ -22,7 +23,7 @@ public class View extends VBox {
         MenuItem helpMe = new MenuItem("Help me,HELP ME");
         help.getItems().add(helpMe);
         button1 = new MenuItem("Add");
-        MenuItem button2 = new MenuItem("Delete");
+        button2 = new MenuItem("Delete");
         MenuItem button3 = new MenuItem("Algorithm");
         MenuItem button4 = new MenuItem("Clear");
 

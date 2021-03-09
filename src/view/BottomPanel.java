@@ -32,7 +32,7 @@ public class BottomPanel extends HBox {
                     new MinusButton(currentPage, rightText, updateStudentsViewWrapped
                     ), rightText, new PlusButton(currentPage, rightText, updateStudentsViewWrapped),
                     new ImageButton("goEnd.png", actionEvent -> {
-                        jumpStart.handle(actionEvent);
+                        jumpEnd.handle(actionEvent);
                         rightText.update();
                     }));
         } catch (FileNotFoundException e) {

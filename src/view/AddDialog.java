@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class AddView {
+public class AddDialog {
     private VBox root = new VBox();
     private Stage stage = new Stage();
     private boolean isStudentAdded = false;
@@ -22,7 +22,7 @@ public class AddView {
     private String name;
     private String patronymic;
     private int group;
-    private int works[] = new int[10];
+    private int[] works = new int[10];
 
     public String getSurname() {
         return surname;
@@ -68,7 +68,7 @@ public class AddView {
         }
     };
 
-    public AddView() {
+    public AddDialog() {
         stage.setTitle("Add student");
         Scene view = new Scene(root, 400, 400);
         widthBind();

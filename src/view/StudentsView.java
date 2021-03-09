@@ -1,5 +1,6 @@
 package view;
 
+import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -36,6 +37,13 @@ public class StudentsView extends VBox {
     public void clear() {
         getChildren().clear();
         getChildren().add(hat);
+
+        Separator separator = new Separator();
+
+        separator.setStyle("-fx-border-style: solid;\n" +
+                "-fx-border-width: 1px;" +
+                "-fx-color-label-visible: black;");
+        getChildren().add(separator);
     }
 
 

@@ -3,7 +3,10 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Model;
+import model.student.FIO;
+import model.student.Group;
 import model.student.PublicWork;
+import model.student.Student;
 import view.View;
 
 public class Main extends Application {
@@ -18,7 +21,9 @@ public class Main extends Application {
         PublicWork[] test = new PublicWork[10];
         for (int i = 0; i < 10; i++)
             test[i] = new PublicWork(i);
-        model.addStudent("asdf", "adsf", "asdfasdf", 1234, test);
+        Student test1 = new Student(new FIO("asd", "asdf", "asdf"), new Group(123), test);
+        for (int i = 0; i < 50; i++)
+            model.addStudent(new Student(new FIO("asd", "asdf", "asdf"+i), new Group(123), test));
 
         Controller controller = new Controller(root, model);
         Scene scene = new Scene(root, 1000, 500);
