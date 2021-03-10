@@ -11,6 +11,12 @@ import java.util.List;
 import java.util.Set;
 
 public class Model {
+
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
     private List<Student> students;
 
     public Model() {
@@ -121,4 +127,9 @@ public class Model {
             set.add(i.getGroup().getNumber());
         return new LinkedList<>(set);
     }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
 }

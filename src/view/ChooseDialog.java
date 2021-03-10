@@ -8,20 +8,21 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
-public class SearchDialog extends VBox {
+public class ChooseDialog extends VBox {
     private Stage stage;
     private ToggleGroup toggleGroup = new ToggleGroup();
     private TextField lowerLimit = new TextField(), upperLimit = new TextField();
-    private TextField student_input = new TextField();
-    private ChoiceBox group_input = new ChoiceBox();
+    private TextField studentInput = new TextField();
+    private ChoiceBox groupInput = new ChoiceBox();
     CheckBox limitsON = new CheckBox("ON");
     HBox first, second, third, fourth;
 
-    public SearchDialog(List<Integer> groupsId, String stageName) {
+    public ChooseDialog(List<Integer> groupsId, String stageName) {
         stageInit(stageName);
 
         first = firtBoxInit(groupsId);
@@ -93,31 +94,33 @@ public class SearchDialog extends VBox {
         return second;
     }
 
+
     private HBox firtBoxInit(List<Integer> groupsId) {
         HBox first = new HBox();
+        Collections.sort(groupsId);
         RadioButton radioButton1 = new RadioButton("Студент");
         RadioButton radioButton2 = new RadioButton("Группа");
         radioButton2.setToggleGroup(toggleGroup);
         radioButton1.setToggleGroup(toggleGroup);
         VBox first_first = new VBox(), first_second = new VBox();
-        student_input.setDisable(true);
+        studentInput.setDisable(true);
         for (Integer i : groupsId)
-            group_input.getItems().add(i);
-        group_input.setDisable(true);
+            groupInput.getItems().add(i);
+        groupInput.setDisable(true);
         first_second.setSpacing(20);
-        first_second.getChildren().addAll(student_input, group_input);
+        first_second.getChildren().addAll(studentInput, groupInput);
         first_first.getChildren().addAll(radioButton1, radioButton2);
         first.getChildren().addAll(first_first, first_second);
         first_first.setSpacing(20);
         first.setPadding(new Insets(25, 0, 0, 25));
         first.setSpacing(20);
         radioButton1.setOnAction(e -> {
-            student_input.setDisable(false);
-            group_input.setDisable(true);
+            studentInput.setDisable(false);
+            groupInput.setDisable(true);
         });
         radioButton2.setOnAction(e -> {
-            student_input.setDisable(true);
-            group_input.setDisable(false);
+            studentInput.setDisable(true);
+            groupInput.setDisable(false);
         });
         first_first.prefWidthProperty().bind(first.widthProperty());
         first_second.prefWidthProperty().bind(first.widthProperty());
@@ -128,7 +131,7 @@ public class SearchDialog extends VBox {
         stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle(stageName);
-        Scene view = new Scene(this, 400, 400);
+        Scene view = new Scene(this, 400, 250);
         stage.setScene(view);
     }
 
@@ -145,11 +148,11 @@ public class SearchDialog extends VBox {
     }
 
     public String getSurname() {
-        return student_input.getText();
+        return studentInput.getText();
     }
 
     public int getGroup() {
-        return (Integer) group_input.getValue();
+        return (Integer) groupInput.getValue();
     }
 
     public int getUpperLimit() {
@@ -164,5 +167,9 @@ public class SearchDialog extends VBox {
     public void updateUI() {
         getChildren().clear();
         getChildren().addAll(first, second, third, fourth);
+    }
+
+    public void stop() {
+        stage.close();
     }
 }

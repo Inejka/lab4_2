@@ -19,13 +19,7 @@ public class Main extends Application {
         View root = new View();
         Model model = new Model();
         PublicWork[] test = new PublicWork[10];
-        for (int i = 0; i < 10; i++)
-            test[i] = new PublicWork(i);
-        Student test1 = new Student(new FIO("asd", "asdf", "asdf"), new Group(123), test);
-        for (int i = 0; i < 50; i++)
-            model.addStudent(new Student(new FIO("asd", "asdf", "asdf"+i), new Group(123), test));
-
-        Controller controller = new Controller(root, model);
+        Controller controller = new Controller(root, model, stage);
         Scene scene = new Scene(root, 1000, 500);
         stage.setTitle("Dialog based interface");
         stage.setScene(scene);

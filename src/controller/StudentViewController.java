@@ -55,7 +55,7 @@ public class StudentViewController {
         for (int i = 0; i < maxViewsPerPage.getNumber(); i++) {
             Student currentStudent = model.getStudent(maxViewsPerPage.getNumber() * (currentPage.getNumber() - 1) + i);
             if (currentStudent != null)
-                new StudentView(studentsView, currentStudent.getFio().getSurname() + currentStudent.getFio().getName() +
+                new StudentView(studentsView, currentStudent.getFio().getSurname() +' '+ currentStudent.getFio().getName() +' '+
                         currentStudent.getFio().getPatronymic(), String.valueOf(currentStudent.getGroup().getNumber()),
                         transform(currentStudent.getSemesters())
                 );

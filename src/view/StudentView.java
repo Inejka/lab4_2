@@ -13,6 +13,8 @@ public class StudentView extends HBox {
     private Text[] works = new Text[10];
 
     public StudentView(VBox parent, String FIO, String group, String[] works) {
+        this.setStyle("-fx-background-color: #cdc1b9;");
+        this.setStyle("-fx-border-color: #000000;");
         this.parent = parent;
         this.FIO.setText(FIO);
         this.group.setText(group);
