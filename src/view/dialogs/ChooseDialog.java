@@ -1,4 +1,4 @@
-package view;
+package view.dialogs;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -10,22 +10,25 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class ChooseDialog extends VBox {
     private Stage stage;
-    private ToggleGroup toggleGroup = new ToggleGroup();
-    private TextField lowerLimit = new TextField(), upperLimit = new TextField();
-    private TextField studentInput = new TextField();
-    private ChoiceBox groupInput = new ChoiceBox();
-    CheckBox limitsON = new CheckBox("ON");
-    HBox first, second, third, fourth;
+    private final ToggleGroup toggleGroup = new ToggleGroup();
+    private final TextField lowerLimit = new TextField();
+    private final TextField upperLimit = new TextField();
+    private final TextField studentInput = new TextField();
+    private final ChoiceBox groupInput = new ChoiceBox();
+    final CheckBox limitsON = new CheckBox("ON");
+    final HBox first;
+    final HBox second;
+    final HBox third;
+    HBox fourth;
 
     public ChooseDialog(List<Integer> groupsId, String stageName) {
         stageInit(stageName);
 
-        first = firtBoxInit(groupsId);
+        first = firstBoxInit(groupsId);
 
         second = secondBoxInit();
 
@@ -95,7 +98,7 @@ public class ChooseDialog extends VBox {
     }
 
 
-    private HBox firtBoxInit(List<Integer> groupsId) {
+    private HBox firstBoxInit(List<Integer> groupsId) {
         HBox first = new HBox();
         Collections.sort(groupsId);
         RadioButton radioButton1 = new RadioButton("Студент");
@@ -135,10 +138,6 @@ public class ChooseDialog extends VBox {
         stage.setScene(view);
     }
 
-    public boolean isStudentSelected() {
-        return ((RadioButton) toggleGroup.getSelectedToggle()).getText().equals("Студент");
-    }
-
     public boolean isGroupSelected() {
         return ((RadioButton) toggleGroup.getSelectedToggle()).getText().equals("Группа");
     }
@@ -160,7 +159,7 @@ public class ChooseDialog extends VBox {
     }
 
 
-    public int getLowerLinit() {
+    public int getLowerLimit() {
         return Integer.parseInt(lowerLimit.getText());
     }
 

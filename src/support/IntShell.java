@@ -2,13 +2,11 @@ package support;
 
 public class IntShell {
     private int number;
-    private int maxNumber;
+    private final int maxNumber;
 
     public IntShell(int number, int maxNumber) {
         this.maxNumber = maxNumber;
-        if (number < maxNumber)
-            this.number = number;
-        else this.number = maxNumber;
+        this.number = Math.min(number, maxNumber);
     }
 
     public void setNumber(int number) {

@@ -1,4 +1,4 @@
-package view;
+package view.dialogs;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,14 +15,14 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class AddDialog {
-    private VBox root = new VBox();
-    private Stage stage = new Stage();
+    private final VBox root = new VBox();
+    private final Stage stage = new Stage();
     private boolean isStudentAdded = false;
     private String surname;
     private String name;
     private String patronymic;
     private int group;
-    private int[] works = new int[10];
+    private final int[] works = new int[10];
 
     public String getSurname() {
         return surname;
@@ -44,15 +44,15 @@ public class AddDialog {
         return works;
     }
 
-    private TextField surnameInput = new TextField();
-    private TextField nameInput = new TextField();
-    private TextField patronymicInput = new TextField();
-    private TextField groupInput = new TextField();
-    private GridPane gridPane = new GridPane();
-    private TextField[] worksInputs = new TextField[10];
-    private HBox buttonsLayer = new HBox();
+    private final TextField surnameInput = new TextField();
+    private final TextField nameInput = new TextField();
+    private final TextField patronymicInput = new TextField();
+    private final TextField groupInput = new TextField();
+    private final GridPane gridPane = new GridPane();
+    private final TextField[] worksInputs = new TextField[10];
+    private final HBox buttonsLayer = new HBox();
 
-    private EventHandler<ActionEvent> okButtonReaction = e -> {
+    private final EventHandler<ActionEvent> okButtonReaction = e -> {
         try {
             stage.close();
             isStudentAdded = true;
@@ -105,7 +105,7 @@ public class AddDialog {
         gridPane.setHgap(5);
         for (int i = 0; i < 2; i++)
             for (int j = 0; j < 5; j++) {
-                gridPane.add(new Label(String.valueOf(j + 1 + i * 5) + " семестр"), j, 2 * i);
+                gridPane.add(new Label((j + 1 + i * 5) + " семестр"), j, 2 * i);
                 worksInputs[j + 5 * i] = new TextField();
                 gridPane.add(worksInputs[j + 5 * i], j, i * 2 + 1);
 
