@@ -27,14 +27,6 @@ public class Model {
         this.students = students;
     }
 
-    public void addStudent(FIO fio, Group group) {
-        students.add(new Student(fio, group));
-    }
-
-    public void addStudent(String surname, String name, String patronymic, int number) {
-        students.add(new Student(new FIO(surname, name, patronymic), new Group(number)));
-    }
-
     public void addStudent(String surname, String name, String patronymic, int number, PublicWork[] publicWorks) {
         students.add(new Student(new FIO(surname, name, patronymic), new Group(number), publicWorks));
     }
@@ -47,11 +39,6 @@ public class Model {
 
     public int getStudentsCount() {
         return students.size();
-    }
-
-    public void removeStudent(int position) {
-        if (position < students.size())
-            students.remove(position);
     }
 
     public void removeStudent(Student student) {
@@ -110,15 +97,11 @@ public class Model {
             removeStudent(i);
     }
 
-    public PublicWork[] transform(int[] toTransfom) {
+    public PublicWork[] transform(int[] toTransform) {
         PublicWork[] toReturn = new PublicWork[10];
         for (int i = 0; i < 10; i++)
-            toReturn[i] = new PublicWork(toTransfom[i]);
+            toReturn[i] = new PublicWork(toTransform[i]);
         return toReturn;
-    }
-
-    public void addStudent(Student student) {
-        students.add(student);
     }
 
     public List<Integer> getGroupsId() {

@@ -1,19 +1,9 @@
-package support;
+package support.fileWorkers;
 
-import model.student.FIO;
-import model.student.Group;
 import model.student.PublicWork;
-import model.student.Student;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -27,12 +17,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 public class Saver {
-    List<Student> toSave;
-    Stage parent;
+    final List<Student> toSave;
+    final Stage parent;
 
     public Saver(List<Student> toSave, Stage stage) {
         this.toSave = toSave;
@@ -59,23 +48,23 @@ public class Saver {
         Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
         Element rootElement = doc.createElement("root");
         doc.appendChild(rootElement);
-        for (int i = 0; i < toSave.size(); i++) {
-            rootElement.appendChild(getStudent(doc, toSave.get(i)));
+        for (Student student : toSave) {
+            rootElement.appendChild(getStudent(doc, student));
         }
         return doc;
     }
 
     private Node getStudent(Document doc, Student toSave) {
         Element student = doc.createElement("Student");
-        student.appendChild(getElement(doc, student, "surname", toSave.getFio().getSurname()));
-        student.appendChild(getElement(doc, student, "name", toSave.getFio().getName()));
-        student.appendChild(getElement(doc, student, "patronymic", toSave.getFio().getPatronymic()));
-        student.appendChild(getElement(doc, student, "group", String.valueOf(toSave.getGroup().getNumber())));
+        student.appendChild(getElement(doc, "surname", toSave.getFio().getSurname()));
+        student.appendChild(getElement(doc, "name", toSave.getFio().getName()));
+        student.appendChild(getElement(doc, "patronymic", toSave.getFio().getPatronymic()));
+        student.appendChild(getElement(doc, "group", String.valueOf(toSave.getGroup().getNumber())));
         student.appendChild(getPublicWorks(doc, toSave.getSemesters()));
         return student;
     }
 
-    private Node getElement(Document doc, Element element, String name, String value) {
+    private Node getElement(Document doc, String name, String value) {
         Element node = doc.createElement(name);
         node.appendChild(doc.createTextNode(value));
         return node;

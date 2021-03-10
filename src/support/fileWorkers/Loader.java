@@ -1,4 +1,4 @@
-package support;
+package support.fileWorkers;
 
 import model.student.FIO;
 import model.student.Group;
@@ -13,15 +13,14 @@ import java.util.List;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.parsers.SAXParserFactory;
 
 
 public class Loader {
-    List<Student> toSave;
-    Stage parent;
+    final List<Student> toSave;
+    final Stage parent;
 
     public Loader(List<Student> toSave, Stage stage) {
         this.toSave = toSave;
@@ -43,11 +42,11 @@ public class Loader {
         }
     }
 
-    private class MyHandler extends DefaultHandler {
+    private static class MyHandler extends DefaultHandler {
         String surname, name, patronymic;
         int group;
         PublicWork[] works;
-        List<Student> toAdd;
+        final List<Student> toAdd;
         String lastName;
         int i;
 
@@ -56,14 +55,14 @@ public class Loader {
         }
 
         @Override
-        public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+        public void startElement(String uri, String localName, String qName, Attributes attributes) {
             if (qName.equals("Student")) works = new PublicWork[10];
             lastName = qName;
             if (qName.equals("Work")) i = Integer.parseInt(attributes.getValue("id"));
         }
 
         @Override
-        public void characters(char[] ch, int start, int length) throws SAXException {
+        public void characters(char[] ch, int start, int length) {
             String information = new String(ch, start, length);
 
             information = information.replace("\n", "").trim();
@@ -83,7 +82,7 @@ public class Loader {
         }
 
         @Override
-        public void endElement(String uri, String localName, String qName) throws SAXException {
+        public void endElement(String uri, String localName, String qName) {
             if (qName.equals("Student"))
                 toAdd.add(new Student(new FIO(surname, name, patronymic), new Group(group), works));
         }

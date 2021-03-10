@@ -11,10 +11,6 @@ public class Group {
         return number;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Group) return this.number == ((Group) obj).number;
