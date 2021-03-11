@@ -100,8 +100,6 @@ public class Controller {
             pane.getChildren().add(imageView);
             Scene scene = new Scene(pane);
             stage.setScene(scene);
-            imageView.fitHeightProperty().bind(pane.heightProperty());
-            imageView.fitWidthProperty().bind(pane.widthProperty());
             stage.setTitle("Ты чиво наделал.............");
             stage.show();
         } catch (FileNotFoundException e) {
